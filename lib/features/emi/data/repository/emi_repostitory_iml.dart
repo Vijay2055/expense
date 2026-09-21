@@ -1,4 +1,3 @@
-
 import 'package:dart_either/dart_either.dart';
 import 'package:expense_app/core/error/failures.dart';
 import 'package:expense_app/features/emi/data/data_source/emi_local_datasource.dart';
@@ -8,6 +7,7 @@ import 'package:expense_app/features/emi/domain/entity/current_month_emi_entity.
 import 'package:expense_app/features/emi/domain/entity/installment_entity.dart';
 import 'package:expense_app/features/emi/domain/entity/loan_enity.dart';
 import 'package:expense_app/features/emi/domain/repository/emi_repository.dart/emi_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EmiRepostitoryIml implements LoanRepository {
   final EmiLocalDatasource localDataSource;
@@ -70,3 +70,8 @@ class EmiRepostitoryIml implements LoanRepository {
     }
   }
 }
+
+final emiRepositoryProvider = Provider<LoanRepository>((ref) {
+  return EmiRepostitoryIml(
+      localDataSource: ref.watch(emiLocalDatasourceProvider));
+});

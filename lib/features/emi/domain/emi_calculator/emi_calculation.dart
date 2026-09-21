@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:expense_app/features/emi/domain/entity/emi_calcuation_entity.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EmiCalculator {
   List<EmiCalculationEntity> calculateSchedule({
@@ -45,3 +46,7 @@ class EmiCalculator {
     return schedule;
   }
 }
+
+final emiCalculationProvider = Provider((ref) {
+  return EmiCalculator();
+});

@@ -1,7 +1,9 @@
 import 'package:expense_app/core/database/database_helper.dart';
+import 'package:expense_app/core/providers/database_provider.dart';
 import 'package:expense_app/features/emi/data/models/current_month_emi_model.dart';
 import 'package:expense_app/features/emi/data/models/installment_model.dart';
 import 'package:expense_app/features/emi/data/models/loanModel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class EmiLocalDatasource {
   Future<void> insertLoan(LoanModel loan);
@@ -74,3 +76,8 @@ ORDER BY loans.created_at DESC;
     await db.insert('loan_installments', installment.toJson());
   }
 }
+
+
+final emiLocalDatasourceProvider=Provider<EmiLocalDatasource>((ref){
+  return EmiLocalDataSoruceImpl(ref.watch(databaseHelperProvider));
+});

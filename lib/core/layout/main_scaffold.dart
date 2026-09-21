@@ -12,7 +12,7 @@ class MainScaffold extends StatelessWidget {
 
     if (location.startsWith(AppConstants.customerPage)) return 1;
     if (location.startsWith(AppConstants.emiPage)) return 2;
-    if (location.startsWith(AppConstants.setting)) return 3;
+    // if (location.startsWith(AppConstants.setting)) return 3;
     return 0;
   }
 
@@ -35,8 +35,8 @@ class MainScaffold extends StatelessWidget {
             case 2:
               context.go(AppConstants.emiPage);
               break;
-            case 3:
-              context.go(AppConstants.setting);
+            // case 3:
+            //   context.go(AppConstants.setting);
           }
         },
         destinations: const [
@@ -55,11 +55,11 @@ class MainScaffold extends StatelessWidget {
               selectedIcon: Icon(Icons.payments),
               label: 'EMI',
             ),
-            NavigationDestination(
-              icon: Icon(Icons.settings_outlined),
-              selectedIcon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
+            // NavigationDestination(
+            //   icon: Icon(Icons.settings_outlined),
+            //   selectedIcon: Icon(Icons.settings),
+            //   label: 'Settings',
+            // ),
         ], 
       ),
     );

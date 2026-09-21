@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Good morning 👋',
+                  'Good Evening 👋',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w500,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Vijay Yadav',
+                  'Sonu Ali',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -75,16 +75,12 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _MonthlySummaryCard(),
-
             const SizedBox(height: 24),
-
             _SectionHeader(
               title: 'Overview',
               subtitle: 'Your financial activity this month',
             ),
-
             const SizedBox(height: 12),
-
             Row(
               children: [
                 Expanded(
@@ -108,9 +104,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 12),
-
             Row(
               children: [
                 Expanded(
@@ -134,22 +128,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 28),
-
             _SectionHeader(
               title: 'Upcoming EMI',
               subtitle: 'Your scheduled payments',
               actionText: 'View all',
               onActionPressed: () {},
             ),
-
             const SizedBox(height: 12),
-
             const HomeEmiTable(),
-
             const SizedBox(height: 28),
-
             _QuickActionCard(),
           ],
         ),
@@ -233,9 +221,7 @@ class _MonthlySummaryCard extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 14),
-
           const Text(
             '₹45,820',
             style: TextStyle(
@@ -245,9 +231,7 @@ class _MonthlySummaryCard extends StatelessWidget {
               letterSpacing: -0.8,
             ),
           ),
-
           const SizedBox(height: 6),
-
           const Text(
             'Total expenses this month',
             style: TextStyle(
@@ -255,9 +239,7 @@ class _MonthlySummaryCard extends StatelessWidget {
               fontSize: 13,
             ),
           ),
-
           const SizedBox(height: 22),
-
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
@@ -269,9 +251,7 @@ class _MonthlySummaryCard extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 12),
-
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
