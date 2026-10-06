@@ -1,4 +1,5 @@
 import 'package:expense_app/features/emi/presentation/applications/providers/add_loan_notifier.dart';
+import 'package:expense_app/features/emi/presentation/applications/providers/currentEmiListNotifier.dart';
 import 'package:expense_app/features/emi/presentation/applications/states/add_loan_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,6 +56,8 @@ class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     ref.listen<AddLoanState>(
       addLoanNotifierProvider,
       (previous, next) {
@@ -102,7 +105,7 @@ class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildHeader(),
+                _buildHeader(colorScheme),
                 const SizedBox(height: 28),
                 _buildSectionTitle(
                   icon: Icons.account_balance_rounded,
@@ -153,17 +156,17 @@ class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(ColorScheme colorScheme) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xff1D4ED8),
-            Color(0xff2563EB),
+            colorScheme.primary,
+            colorScheme.primaryContainer,
           ],
         ),
         borderRadius: BorderRadius.circular(24),
@@ -205,12 +208,6 @@ class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
   }) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 19,
-          color: const Color(0xff2563EB),
-        ),
-        const SizedBox(width: 8),
         Text(
           title,
           style: const TextStyle(
@@ -447,9 +444,10 @@ class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
                 }
 
                 ref.read(addLoanNotifierProvider.notifier).addLoan();
+                ref.invalidate(currentMonthEmiNotifierProvider);
               },
         style: FilledButton.styleFrom(
-          backgroundColor: const Color(0xff2563EB),
+          backgroundColor: Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

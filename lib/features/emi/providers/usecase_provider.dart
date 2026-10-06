@@ -1,7 +1,9 @@
 import 'package:expense_app/features/emi/data/repository/emi_repostitory_iml.dart';
 import 'package:expense_app/features/emi/domain/emi_calculator/emi_calculation.dart';
+import 'package:expense_app/features/emi/domain/usecase/add_installment_usecase.dart';
 import 'package:expense_app/features/emi/domain/usecase/add_loan_usecase.dart';
 import 'package:expense_app/features/emi/domain/usecase/get_current_month_usecase.dart';
+import 'package:expense_app/features/emi/domain/usecase/get_installment_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final getCurrentMonthEmiUseCaseProvider =
@@ -13,4 +15,13 @@ final getCurrentMonthEmiUseCaseProvider =
 
 final addLoanProvider = Provider<AddLoanUseCase>((ref) {
   return AddLoanUseCase(ref.watch(emiRepositoryProvider));
+});
+
+final getInstallmentUsecaseProvider = Provider<GetInstallmentUsecase>((ref) {
+  return GetInstallmentUsecase(
+      ref.watch(emiRepositoryProvider), ref.watch(emiCalculationProvider));
+});
+
+final addInstallmentUsecaseProvider = Provider<AddInstallmentUsecase>((ref) {
+  return AddInstallmentUsecase(ref.watch(emiRepositoryProvider));
 });

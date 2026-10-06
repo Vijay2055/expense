@@ -152,7 +152,10 @@ class EmiScreen extends ConsumerWidget {
                           child: InkWell(
                             borderRadius: BorderRadius.circular(20),
                             onTap: () {
-                              // Open EMI calculator for this bank
+                              context.push(
+                                '/emi/installment',
+                                extra: bank.loan,
+                              );
                             },
                             child: Ink(
                               padding: const EdgeInsets.all(16),
@@ -224,7 +227,7 @@ class EmiScreen extends ConsumerWidget {
                                       ),
                                       const SizedBox(height: 3),
                                       Text(
-                                        bank.calculation.emi.toString(),
+                                        bank.calculation.emi.toStringAsFixed(2),
                                         style: theme.textTheme.titleMedium
                                             ?.copyWith(
                                           fontWeight: FontWeight.bold,

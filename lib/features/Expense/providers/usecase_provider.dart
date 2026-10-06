@@ -3,6 +3,7 @@ import 'package:expense_app/features/Expense/domain/usecase/add_customer_usecase
 import 'package:expense_app/features/Expense/domain/usecase/add_expense_usecase.dart';
 import 'package:expense_app/features/Expense/domain/usecase/get_customer_usecase.dart';
 import 'package:expense_app/features/Expense/domain/usecase/get_expense_usecase.dart';
+import 'package:expense_app/features/emi/domain/usecase/get_installment_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final getCustomerUseCaseProvider = Provider<GetCustomerSummaryUsecase>((ref) {
@@ -20,3 +21,4 @@ final addCustomerUsecaseProvider = Provider<AddCustomerUsecase>((ref) {
 final addExpenseUsecaseProvider = Provider<AddExpenseUsecase>((ref) {
   return AddExpenseUsecase(ref.watch(customerReposiotryProvider));
 });
+

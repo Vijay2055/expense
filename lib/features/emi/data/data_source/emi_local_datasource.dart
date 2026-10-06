@@ -8,19 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 abstract class EmiLocalDatasource {
   Future<void> insertLoan(LoanModel loan);
   Future<List<CurrentMonthEmiModel>> getCurrentMonthEmi();
-  Future<LoanModel> getLoan(String loanId);
+
   Future<void> insertInstallment(InstallmentModel installment);
-  Future<List<InstallmentModel>> getInstallment();
+  Future<List<InstallmentModel>> getInstallment({required String loanId});
 }
 
 class EmiLocalDataSoruceImpl implements EmiLocalDatasource {
   final DatabaseHelper _helper;
   const EmiLocalDataSoruceImpl(this._helper);
-  @override
-  Future<LoanModel> getLoan(String loanId) {
-    // TODO: implement getLoan
-    throw UnimplementedError();
-  }
 
   @override
   Future<List<CurrentMonthEmiModel>> getCurrentMonthEmi() async {
@@ -65,9 +60,20 @@ ORDER BY loans.created_at DESC;
   }
 
   @override
-  Future<List<InstallmentModel>> getInstallment() {
-    // TODO: implement getInstallment
-    throw UnimplementedError();
+  Future<List<InstallmentModel>> getInstallment(
+      {required String loanId}) async {
+    final db = await _helper.database;
+    final rows = await db.query(
+      'loan_installments',
+      where: 'loan_id = ?',
+      whereArgs: [loanId],
+    );
+
+    if (rows.isEmpty) {
+      return [];
+    }
+
+    return rows.map((item) => InstallmentModel.fromMap(item)).toList();
   }
 
   @override
@@ -77,7 +83,6 @@ ORDER BY loans.created_at DESC;
   }
 }
 
-
-final emiLocalDatasourceProvider=Provider<EmiLocalDatasource>((ref){
+final emiLocalDatasourceProvider = Provider<EmiLocalDatasource>((ref) {
   return EmiLocalDataSoruceImpl(ref.watch(databaseHelperProvider));
 });

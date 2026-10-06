@@ -5,4 +5,5 @@ class AppConstants {
   static final String customerPage = '/customer';
   static final String customerDetail = ':customerId';
   static final String setting = '/settings';
+  static const String installment = 'installment';
 }

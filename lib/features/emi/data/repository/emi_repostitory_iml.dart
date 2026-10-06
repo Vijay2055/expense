@@ -69,6 +69,17 @@ class EmiRepostitoryIml implements LoanRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<InstallmentEntity>>> getInstallment(
+      {required String loanId}) async {
+    try {
+      final instalment = await localDataSource.getInstallment(loanId: loanId);
+      return Right(instalment.map((item) => item.toEntity()).toList());
+    } catch (e) {
+      return Left(CacheFailure(message: e.toString()));
+    }
+  }
 }
 
 final emiRepositoryProvider = Provider<LoanRepository>((ref) {
