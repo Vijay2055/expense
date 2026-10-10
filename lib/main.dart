@@ -18,52 +18,61 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(ProviderScope(
-      child: MaterialApp.router(
-    debugShowCheckedModeBanner: false,
-    darkTheme: ThemeData.dark().copyWith(
-      colorScheme: kDarkColorScheme,
-      cardTheme: CardThemeData().copyWith(
-        color: kDarkColorScheme.secondaryContainer,
-        margin: EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kDarkColorScheme.primaryContainer,
-          foregroundColor: kDarkColorScheme.onPrimaryContainer,
-        ),
-      ),
-    ),
-    theme: ThemeData().copyWith(
-      colorScheme: kColorScheme,
-      appBarTheme: AppBarTheme().copyWith(
-        backgroundColor: kColorScheme.onPrimaryContainer,
-        foregroundColor: kColorScheme.primaryContainer,
-      ),
-      cardTheme: CardThemeData().copyWith(
-        color: kColorScheme.secondaryContainer,
-        margin: EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kColorScheme.primaryContainer,
-        ),
-      ),
-      textTheme: ThemeData().textTheme.copyWith(
-            titleLarge: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: kColorScheme.onSecondaryContainer,
-            ),
-          ),
-    ),
-    routerConfig: appRouter,
-  )));
+  runApp(ProviderScope(child: MyApp()));
   // });
+}
+
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: CardThemeData().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+      ),
+      theme: ThemeData().copyWith(
+        colorScheme: kColorScheme,
+        appBarTheme: AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.onPrimaryContainer,
+          foregroundColor: kColorScheme.primaryContainer,
+        ),
+        cardTheme: CardThemeData().copyWith(
+          color: kColorScheme.secondaryContainer,
+          margin: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorScheme.primaryContainer,
+          ),
+        ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: kColorScheme.onSecondaryContainer,
+              ),
+            ),
+      ),
+      routerConfig: router,
+    );
+  }
 }

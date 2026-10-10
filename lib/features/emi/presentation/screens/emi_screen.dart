@@ -31,7 +31,7 @@ class EmiScreen extends ConsumerWidget {
           IconButton(
               onPressed: () {
                 context.push(
-                  '${AppConstants.emiPage}/${AppConstants.addLoan}',
+                  AppConstants.addLoan,
                 );
               },
               icon: Icon(Icons.add))
@@ -62,7 +62,7 @@ class EmiScreen extends ConsumerWidget {
                       ElevatedButton(
                           onPressed: () {
                             context.push(
-                              '${AppConstants.emiPage}/${AppConstants.addLoan}',
+                              AppConstants.addLoan,
                             );
                           },
                           child: Text("Add Bank")),
@@ -153,7 +153,7 @@ class EmiScreen extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(20),
                             onTap: () {
                               context.push(
-                                '/emi/installment',
+                                AppConstants.installment,
                                 extra: bank.loan,
                               );
                             },

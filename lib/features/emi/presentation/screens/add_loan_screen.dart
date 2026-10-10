@@ -10,7 +10,7 @@ class AddLoanScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<AddLoanScreen> createState() => _AddLoanScreenState();
-}
+} 
 
 class _AddLoanScreenState extends ConsumerState<AddLoanScreen> {
   final _formKey = GlobalKey<FormState>();
