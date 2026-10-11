@@ -24,19 +24,7 @@ final GoRouter appRouter =
         GoRoute(
             path: AppConstants.emiPage,
             builder: (context, state) => const EmiScreen(),
-            routes: [
-              GoRoute(
-                  path: AppConstants.addLoan,
-                  builder: ((context, state) => const AddLoanScreen())),
-              GoRoute(
-                  path: AppConstants.installment,
-                  builder: ((context, state) {
-                    final loan = state.extra as CurrentMonthEmiEntity;
-                    return InstallmentScreen(
-                      loan: loan,
-                    );
-                  }))
-            ]),
+           ),
         GoRoute(
           path: AppConstants.customerPage,
           builder: (context, state) => const CustomerScreen(),
@@ -57,5 +45,16 @@ final GoRouter appRouter =
             return const SettingScreen();
           },
         ),
-      ])
+      ]),
+        GoRoute(
+                  path: AppConstants.addLoan,
+                  builder: ((context, state) => const AddLoanScreen())),
+              GoRoute(
+                  path: AppConstants.installment,
+                  builder: ((context, state) {
+                    final loan = state.extra as CurrentMonthEmiEntity;
+                    return InstallmentScreen(
+                      loan: loan,
+                    );
+                  }))
 ]);
