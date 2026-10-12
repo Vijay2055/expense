@@ -1,7 +1,8 @@
+import 'package:expense_app/core/constants/app_constants.dart';
 import 'package:expense_app/core/utility/date_formate.dart';
 import 'package:expense_app/features/Expense/domain/enitty/customer_summary_entity.dart';
-import 'package:expense_app/features/Expense/presentation/screens/customer_expnse_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomerCard extends StatelessWidget {
   final CustomerSummaryEntity customer;
@@ -22,9 +23,8 @@ class CustomerCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-            return CustomerDetailScreen(customerId: customer.id);
-          }));
+          context.push(AppConstants.customerDetail,
+              extra: {'customerId': customer.id});
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(

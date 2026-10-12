@@ -1,8 +1,10 @@
+import 'package:expense_app/core/constants/app_constants.dart';
 import 'package:expense_app/features/Expense/presentation/providers/customer_notifier.dart';
 import 'package:expense_app/features/Expense/presentation/screens/add_customer_screen.dart';
 import 'package:expense_app/features/Expense/presentation/widgets/customer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomerScreen extends ConsumerWidget {
   const CustomerScreen({super.key});
@@ -35,11 +37,7 @@ class CustomerScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const AddCustomerScreen(),
-                ),
-              );
+              context.push(AppConstants.addCustomer);
             },
             icon: const Icon(Icons.add),
             tooltip: 'Add Customer',
